@@ -47,10 +47,10 @@ jobs:
             --minify \
             --baseURL "${{ secrets.SITE_BASE_URL }}/"          
       - name: Upload a Build Artifact
-        uses: actions/upload-artifact@v4.3.1            
+        uses: actions/upload-artifact@v4
         with:
           name: hugo-site
-          path: ./public
+          path: ./workshop/public
   # Deployment job
   deploy:
     runs-on: ubuntu-latest
@@ -60,17 +60,17 @@ jobs:
         uses: actions/download-artifact@v4
         with:
           name: hugo-site
-          path: ./public
+          path: ./workshop/public
       - name: "Configure AWS Credentials"
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
           aws-region: ${{ secrets.AWS_REGION }}
           role-to-assume: arn:aws:iam::${{ secrets.AWS_ACCOUNT_ID }}:role/${{ secrets.AWS_S3_ASSUME_ROLE }}
-          role-session-name: ${{ secrets.AWS_S3_ROLE_SESSION_NAME }}
+          role-session-name: GithubActionsAWS_STSRole
           mask-aws-account-id: true
       - name: Sync to S3
         id: deployment
         run: aws s3 sync ./public/ s3://${{ secrets.BUCKET_NAME }}/001-deploy-static-site-to-s3 --delete --cache-control max-age=31536000
-      # - name: Cloudfront Invalidation
-      #   id: flushcache
-      #   run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} --paths "/001-deploy-static-site-to-s3/*"
+      - name: Cloudfront Invalidation
+        id: flushcache
+        run: aws cloudfront create-invalidation --distribution-id ${{ secrets.CF_DISTRIBUTION_ID }} --paths "/001-deploy-static-site-to-s3/*"
