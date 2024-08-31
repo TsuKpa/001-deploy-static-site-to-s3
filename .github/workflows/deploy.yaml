@@ -74,7 +74,7 @@ jobs:
           # role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_S3_ASSUME_ROLE }}
           role-to-assume: arn:aws:iam::419040915749:role/GithubActionRoleDeployS3
           role-session-name: GithubActionRoleDeployS3
-          mask-aws-account-id: true
+          mask-aws-account-id: false
       - name: Sync to S3
         id: deployment
         run: aws s3 sync ./public/ s3://${{ env.BUCKET_NAME }} --delete --cache-control max-age=31536000
