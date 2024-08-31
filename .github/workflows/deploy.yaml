@@ -71,13 +71,12 @@ jobs:
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
           aws-region: ${{ env.AWS_REGION }}
-          # role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_S3_ASSUME_ROLE }}
-          role-to-assume: arn:aws:iam::419040915749:role/GithubActionRoleDeployS3
-          role-session-name: GithubActionRoleDeployS3
-          mask-aws-account-id: false
+          role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_S3_ASSUME_ROLE }}
+          role-session-name: GithubActionRoleDeploy
+          mask-aws-account-id: true
       - name: Sync to S3
         id: deployment
-        run: aws s3 sync ./public/ s3://${{ env.BUCKET_NAME }} --delete --cache-control max-age=31536000
+        run: aws s3 sync ./workshop/public/ s3://${{ env.BUCKET_NAME }} --delete --cache-control max-age=31536000
       - name: Cloudfront Invalidation
         id: flushcache
         run: aws cloudfront create-invalidation --distribution-id ${{ env.CF_DISTRIBUTION_ID }} --paths "/${{ env.BUCKET_NAME }}/*"
