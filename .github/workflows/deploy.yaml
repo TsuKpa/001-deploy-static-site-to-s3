@@ -54,6 +54,12 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     environment: dev # the name config in the github interface
+    env:
+        AWS_REGION: ${{ secrets.AWS_REGION }}
+        AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+        AWS_S3_ASSUME_ROLE: ${{ secrets.AWS_S3_ASSUME_ROLE }}
+        BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+        CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
     needs: build
     steps:
       - name: Download artifacts (Docker images) from previous workflows
@@ -62,17 +68,11 @@ jobs:
           name: hugo-site
           path: ./workshop/public
       - name: "Configure AWS Credentials"
-        env:
-          AWS_REGION: ${{ secrets.AWS_REGION }}
-          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-          AWS_S3_ASSUME_ROLE: ${{ secrets.AWS_S3_ASSUME_ROLE }}
-          BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
-          CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
           aws-region: ${{ env.AWS_REGION }}
           role-to-assume: arn:aws:iam::${{ env.AWS_ACCOUNT_ID }}:role/${{ env.AWS_S3_ASSUME_ROLE }}
-          role-session-name: GithubActionsAWS_STSRole
+          role-session-name: ${{ env.AWS_S3_ASSUME_ROLE }}
           mask-aws-account-id: true
       - name: Sync to S3
         id: deployment
