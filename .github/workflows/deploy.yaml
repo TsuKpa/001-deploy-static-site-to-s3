@@ -23,7 +23,7 @@ jobs:
   # Build job
   build:
     runs-on: ubuntu-latest
-    environment: dev
+    environment: dev # the name config in the github interface
     steps:
       - name: Install Hugo CLI
         run: |
@@ -40,13 +40,8 @@ jobs:
       - name: Build with Hugo
         env:
           SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
-          TEST1: ${{ secrets.TEST }}
-          TEST: testvalue
         run: |
           cd workshop && \
-          echo '${{ env.SITE_BASE_URL }}' \
-          echo '${{ env.TEST }}' \
-          echo '${{ env.TEST1 }}' \
           hugo \
             --minify \
             --baseURL '${{ env.SITE_BASE_URL }}/'
@@ -58,12 +53,7 @@ jobs:
   # Deployment job
   deploy:
     runs-on: ubuntu-latest
-    env:
-      AWS_REGION: ${{ secrets.AWS_REGION }}
-      AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
-      AWS_S3_ASSUME_ROLE: ${{ secrets.AWS_S3_ASSUME_ROLE }}
-      BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
-      CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
+    environment: dev # the name config in the github interface
     needs: build
     steps:
       - name: Download artifacts (Docker images) from previous workflows
@@ -72,6 +62,12 @@ jobs:
           name: hugo-site
           path: ./workshop/public
       - name: "Configure AWS Credentials"
+        env:
+          AWS_REGION: ${{ secrets.AWS_REGION }}
+          AWS_ACCOUNT_ID: ${{ secrets.AWS_ACCOUNT_ID }}
+          AWS_S3_ASSUME_ROLE: ${{ secrets.AWS_S3_ASSUME_ROLE }}
+          BUCKET_NAME: ${{ secrets.BUCKET_NAME }}
+          CF_DISTRIBUTION_ID: ${{ secrets.CF_DISTRIBUTION_ID }}
         uses: aws-actions/configure-aws-credentials@v4.0.2
         with:
           aws-region: ${{ env.AWS_REGION }}
