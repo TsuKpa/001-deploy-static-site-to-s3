@@ -39,7 +39,7 @@ jobs:
       #        run: "[[ -f package-lock.json || -f npm-shrinkwrap.json ]] && npm ci || true"
       - name: Build with Hugo
         env:
-          SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }}
+          SITE_BASE_URL: ${{ secrets.SITE_BASE_URL }} #test
         run: |
           cd workshop && \
           hugo \
