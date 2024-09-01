@@ -12,7 +12,7 @@ pre : " <b> 5. </b> "
 
 We will configure **Port Forwarding** for the RDP connection between our machine and **Private Windows Instance** located in the private subnet we created for this exercise.
 
-![port-fwd](/images/arc-04.png) 
+{{< img src="images/arc-04.png" title="port-fwd" >}}
 
 #### Create IAM user with permission to connect SSM
 
@@ -20,6 +20,7 @@ We will configure **Port Forwarding** for the RDP connection between our machine
    + Click **Users** , then click **Add users**.
 
 ![FWD](/images/5.fwd/001-fwd.png)
+{{< img src="/images/5.fwd/001-fwd.png" title="port-fwd" >}}
 
 2. At the **Add user** page.
    + In the **User name** field, enter **Portfwd**.
@@ -27,6 +28,7 @@ We will configure **Port Forwarding** for the RDP connection between our machine
    + Click **Next: Permissions**.
   
 ![FWD](/images/5.fwd/002-fwd.png)
+{{< img src="/images/5.fwd/002-fwd.png" title="port-fwd" >}}
 
 3. Click **Attach existing policies directly**.
    + In the search box, enter **ssm**.
@@ -78,7 +80,7 @@ Prove that you have not successfully installed the Session Manager Plugin. You m
 
 
 ![FWD](/images/5.fwd/003-fwd.png)
-
+{{< img src="/images/5.fwd/003-fwd.png" title="port-fwd" >}}
 
 3. Return to the administration interface of the System Manager - Session Manager service.
    + Click tab **Session history**.
@@ -86,6 +88,6 @@ Prove that you have not successfully installed the Session Manager Plugin. You m
 
 
 ![FWD](/images/5.fwd/004-fwd.png)
-
+{{< img src="/images/5.fwd/004-fwd.png" title="port-fwd" >}}
 
 Congratulations on completing the lab on how to use Session Manager to connect and store session logs in S3 bucket. Remember to perform resource cleanup to avoid unintended costs.
