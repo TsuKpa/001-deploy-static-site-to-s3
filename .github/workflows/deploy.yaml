@@ -44,7 +44,7 @@ jobs:
           cd workshop && \
           hugo \
             --minify \
-            --baseURL '${{ env.SITE_BASE_URL }}/'
+            --baseURL '${{ env.SITE_BASE_URL }}'
       - name: Upload a Build Artifact
         uses: actions/upload-artifact@v4
         with:
