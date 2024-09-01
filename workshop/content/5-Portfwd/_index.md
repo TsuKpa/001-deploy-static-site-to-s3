@@ -12,7 +12,7 @@ pre : " <b> 5. </b> "
 
 We will configure **Port Forwarding** for the RDP connection between our machine and **Private Windows Instance** located in the private subnet we created for this exercise.
 
-{{< img src="images/arc-04.png" title="port-fwd" >}}
+{{< img src="images/arc-04.png" title="###########" >}}
 
 #### Create IAM user with permission to connect SSM
 
@@ -20,7 +20,7 @@ We will configure **Port Forwarding** for the RDP connection between our machine
    + Click **Users** , then click **Add users**.
 
 ![FWD](/images/5.fwd/001-fwd.png)
-{{< img src="images/5.fwd/001-fwd.png" title="port-fwd" >}}
+{{< img src="images/5.fwd/001-fwd.png" title="port-123" >}}
 
 2. At the **Add user** page.
    + In the **User name** field, enter **Portfwd**.
