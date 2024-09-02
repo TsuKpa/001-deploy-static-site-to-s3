@@ -9,9 +9,9 @@ chapter : false
 
 ### Overall
 
- In this lab, you'll learn the basics and practice of Amazon S3, Cloudfront, using IAM OIDC STS with Github Action. Perform creating NextJs App with low latency.
+ In this workshop, you'll learn the basics and practice of Amazon S3, Cloudfront, using IAM OIDC STS with Github Action. Perform creating NextJs App with low latency.
 
-![Infrastructure](/images/infrastructure.png)
+{{< img src="images/infrastructure.png" title="Infrastructure" >}}
 
 ### Content
 
@@ -20,5 +20,6 @@ chapter : false
  3. [Setup S3](3-s3/)
  4. [Setup Cloudfront](4-cloudfront/)
  5. [Setup IAM](5-iam/)
- 6. [Clean up resources](6-cleanup/)
- 7. [Infrastructure as Code (Terraform)](7-terraform)
+ 6. [Setup Github](6-github)
+ 7. [Testing result](7-result/)
+ 8. [Cleanup resource](8-cleanup/)
