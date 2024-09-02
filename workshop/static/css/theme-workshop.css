@@ -151,7 +151,7 @@ div.notices p:first-child:before {
 
 body {
     color: var(--MAIN-TEXT-color) !important;
-    font-family: 'Amazon Ember','Work Sans', sans-serif;
+    font-family: 'Montserrat', sans-serif;
 	text-align: left;
 }
 
@@ -194,3 +194,15 @@ div.notices.info p {
     background: #FFF2DB;
 }
 
+.all-workshops {
+    margin-top: .5rem;
+    font-size: 1rem;
+    color: white;
+    cursor: pointer;
+}
+
+.icon {
+    width: 1rem;
+    height: 1rem;
+}
+  
