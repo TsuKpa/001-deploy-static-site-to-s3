@@ -4,13 +4,13 @@
 variable "github_token" {
   type        = string
   description = "Github token for create repository"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "github_owner" {
   type        = string
   description = "Github owner"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "github_repo_name" {
@@ -32,27 +32,27 @@ variable "region" {
   default     = "ap-southeast-1"
 }
 
-###############################
-# EC2
-###############################
-
-variable "instance_type" {
+variable "aws_profile_name" {
   type        = string
-  description = "Name of the instance type"
-  default     = "t2.micro"
-}
-
-variable "key_name" {
-  type        = string
-  description = "Name of the key pair use to ssh"
-  default     = "myec2-keypair"
+  description = "AWS profile for using credentials"
+  default     = "default"
 }
 
 ###############################
-# VPC, subnet
+# S3
 ###############################
 
-variable "vpc_name" {
+variable "bucket_name" {
+  type    = string
+  default = "my-nextjs-bucket-name-workshop-001"
+}
+
+###############################
+# IAM
+###############################
+
+variable "iam_role_name" {
   type        = string
-  description = "Name for the VPC"
+  description = "IAM Role Name"
+  default     = "GithubActionS3CFRole"
 }

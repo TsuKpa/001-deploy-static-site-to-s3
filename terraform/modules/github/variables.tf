@@ -5,7 +5,7 @@
 variable "github_token" {
   type        = string
   description = "Github token for create repository"
-  sensitive = true
+  sensitive   = true
 }
 
 variable "github_repo_name" {
@@ -18,24 +18,10 @@ variable "github_repo_description" {
   description = "Github repository description"
 }
 
-variable "github_branchs" {
+variable "secrets_list" {
   type = list(object({
-    name       = string
-    is_default = bool
-    action     = bool
+    name  = string
+    value = string
   }))
-
-  default = [
-    {
-      name       = "develop"
-      is_default = false
-      action     = true
-    }, 
-    {
-      name       = "staging"
-      is_default = false
-      action     = false
-    }
-  ]
-  description = "Github default branch trigger action deploy"
+  description = "List secrets ARN, name for deploy to AWS"
 }
