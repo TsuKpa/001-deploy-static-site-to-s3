@@ -23,3 +23,4 @@ Trong workshop này, bạn sẽ được tìm hiểu kiến ​​thức cơ b�
  6. [Cấu hình Github](6-github)
  7. [Kiểm tra kết quả](7-result/)
  8. [Xoá tài nguyên](8-cleanup/)
+ 9. [IaC-Terraform](9-terraform)

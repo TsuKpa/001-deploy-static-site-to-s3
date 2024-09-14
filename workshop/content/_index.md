@@ -23,3 +23,4 @@ chapter : false
  6. [Setup Github](6-github)
  7. [Testing result](7-result/)
  8. [Cleanup resource](8-cleanup/)
+ 9. [IaC-Terraform](9-terraform)
